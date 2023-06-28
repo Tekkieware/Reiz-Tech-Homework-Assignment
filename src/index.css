@@ -1,24 +1,25 @@
 
 .countries-list{
   margin: 50px 20vw;
-  background-color: rgb(227,255,227);
   padding: 10px 20px;
 }
 
 
 .country{
-  background-color: rgb(204,255,204);
   padding: 5px 5px;
 }
 
 .country-name{
   font-size: 20px;
+  line-height: 0;
 }
 
 .country-region{
   font-size: 16px;
+  line-height: 0;
 }
 
 .country-area{
   font-size: 12px;
+  line-height: 0;
 }
