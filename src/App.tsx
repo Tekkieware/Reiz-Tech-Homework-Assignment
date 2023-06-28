@@ -7,9 +7,9 @@ import {Container, Row, Col, Form} from 'react-bootstrap'
 
 
 const App:React.FC = () => {
-  
+const [apiData, setApiData] = useState<Country[]>([])
 const [currentPage, setCurrentPage] = useState<number>(1)
-const countriesPerPage: number = 5
+const countriesPerPage: number = 8
 const lastIndex: number = currentPage * countriesPerPage
 const firstIndex: number = lastIndex - countriesPerPage
 const [countriesList, setCountriesList] = useState<Country[]>([])
@@ -26,6 +26,7 @@ useEffect (()=>{
 axios(config)
 .then(function (response) {
   setCountriesList(response.data)
+  setApiData(response.data)
 })
 .catch(function (error) {
   console.log(error);
@@ -49,12 +50,23 @@ setCurrentPage(number)
 }
 
 
-const filterByValue = (e: React.FormEvent, region: string) =>{
+const filterByRegion = (e: React.FormEvent, region: string) =>{
   e.preventDefault()
   if(region){
     setCountriesList(countriesList.filter(country => country.region === "Oceania"))
 }
   }
+
+  const filterByArea = (e: React.FormEvent, area: string) =>{
+    e.preventDefault()
+    if(area ==="lessthanlithuana"){
+      setCountriesList(apiData.filter(country => country.area < 65300))
+  }else{
+    if(area ==="largerthanlithuana"){
+      setCountriesList(apiData.filter(country => country.area > 65300))
+    }
+  }
+    }
   
 
   const sort = (e: React.FormEvent, order: string) =>{
@@ -80,16 +92,16 @@ const filterByValue = (e: React.FormEvent, region: string) =>{
       <h4>Countries List</h4>
       <Row className='mb-4'>
         <Col md={3}>
-      <Form.Select size="sm" onChange={((e) => filterByValue(e, e.target.value))}>
+      <Form.Select size="sm" onChange={((e) => filterByRegion(e, e.target.value))}>
         <option>filter by region</option>
         <option value="Oceania">Oceania</option>
       </Form.Select>
         </Col>
         <Col md={3}>
-        <Form.Select size="sm">
+        <Form.Select size="sm" onChange={((e) => filterByArea(e, e.target.value))}>
         <option>filter by area</option>
-        <option>smaller than lithuana</option>
-        <option>larger than lithuana</option>
+        <option value="lessthanlithuana">smaller than lithuana</option>
+        <option value="largerthanlithuana">larger than lithuana</option>
       </Form.Select>
         </Col>
         <Col md={3} className='offset-md-3'>
@@ -111,13 +123,13 @@ const filterByValue = (e: React.FormEvent, region: string) =>{
       <Row>
         <Col>
       <Pagination>
-       <Pagination.Prev onClick={prevPage} />
+       <Pagination.Item onClick={prevPage}><b>Previous</b></Pagination.Item>
         {
           pageNumbers.map((number, index) =>(
             <Pagination.Item className={number === currentPage ? 'active': ''} key={index} onClick={()=>changeCurrentPage(number)}>{number}</Pagination.Item>
           ))
         }
-       <Pagination.Next onClick={nextPage} />
+       <Pagination.Item onClick={nextPage}><b>Next</b></Pagination.Item>
       </Pagination>
       </Col>
       </Row>

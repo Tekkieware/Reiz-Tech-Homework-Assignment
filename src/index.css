@@ -1,5 +1,6 @@
 body{
   background-color: rgb(69,130,236);
+  font-family:monospace;
 }
 
 
@@ -27,4 +28,8 @@ body{
 .country-area{
   font-size: 12px;
   line-height: 0;
+}
+
+.pagination{
+  
 }
