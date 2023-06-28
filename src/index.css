@@ -1,7 +1,12 @@
+body{
+  background-color: rgb(69,130,236);
+}
+
 
 .countries-list{
   margin: 50px 20vw;
   padding: 10px 20px;
+  background-color: #fff;
 }
 
 
