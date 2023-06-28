@@ -18,18 +18,26 @@ body{
 .country-name{
   font-size: 20px;
   line-height: 0;
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 .country-region{
-  font-size: 16px;
+  font-size: 15px;
   line-height: 0;
+  font-family: 'Courier New', Courier, monospace;
 }
 
 .country-area{
-  font-size: 12px;
+  font-size: 11px;
   line-height: 0;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
-.pagination{
-  
+.form-select{
+background-color: rgb(69,130,236, 0.2);
+color: #000;
+}
+.page-link{
+  font-size: 14px;
+  padding: 1px 5px;
 }

@@ -9,7 +9,7 @@ import {Container, Row, Col, Form} from 'react-bootstrap'
 const App:React.FC = () => {
 const [apiData, setApiData] = useState<Country[]>([])
 const [currentPage, setCurrentPage] = useState<number>(1)
-const countriesPerPage: number = 8
+const countriesPerPage: number = 15
 const lastIndex: number = currentPage * countriesPerPage
 const firstIndex: number = lastIndex - countriesPerPage
 const [countriesList, setCountriesList] = useState<Country[]>([])
@@ -92,16 +92,16 @@ const filterByRegion = (e: React.FormEvent, region: string) =>{
       <h4>Countries List</h4>
       <Row className='mb-4'>
         <Col md={3}>
-      <Form.Select size="sm" onChange={((e) => filterByRegion(e, e.target.value))}>
-        <option>filter by region</option>
-        <option value="Oceania">Oceania</option>
-      </Form.Select>
-        </Col>
-        <Col md={3}>
         <Form.Select size="sm" onChange={((e) => filterByArea(e, e.target.value))}>
         <option>filter by area</option>
         <option value="lessthanlithuana">smaller than lithuana</option>
         <option value="largerthanlithuana">larger than lithuana</option>
+      </Form.Select>
+        </Col>
+        <Col md={3}>
+      <Form.Select size="sm" onChange={((e) => filterByRegion(e, e.target.value))}>
+        <option>filter by region</option>
+        <option value="Oceania">Oceania</option>
       </Form.Select>
         </Col>
         <Col md={3} className='offset-md-3'>
@@ -116,7 +116,7 @@ const filterByRegion = (e: React.FormEvent, region: string) =>{
         <Row className='country' key={index}>
         <p className='country-name'>{country.name}</p>
         <p className='country-region'>{country.region}</p>
-        <p className='country-area'>{country.area}</p>
+        <p className='country-area'>{country.area}km<sup>2</sup></p>
         </Row>
       )
       )}
